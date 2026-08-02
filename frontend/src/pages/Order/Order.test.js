@@ -56,14 +56,15 @@ describe('Test Order', () => {
     //ACT
     //Update the Delivery distance by choosing the 5 mile option from the drop down
     userEvent.selectOptions(
-      // Find the select element, like a real user would.
+      // Find the select element, like a real user would.cd
       screen.getByRole('combobox'),
       // Find and select the 5 mile option, like a real user would.
       screen.getByRole('option', { name: '5 miles' })
     );
     //Assert: replace the return true.
     await waitFor(() => {
-      return true;
+      expect(screen.getAllByText('$5.00'))
+        .toHaveLength(1);
     });
   });
 });
